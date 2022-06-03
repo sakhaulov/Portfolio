@@ -1,0 +1,913 @@
+{
+	"info": {
+		"_postman_id": "2631c1fe-3e3f-48d0-8940-a95bc632dd31",
+		"name": "Sakhaulov - api.spoonacular.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "recepies",
+			"item": [
+				{
+					"name": "Complex Search",
+					"item": [
+						{
+							"name": "Positive | Single Word Query",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Multiple Word Query",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Exact Title Query",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Title Match",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | addRecipeNutrition is true",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | addRecipeInformation is true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"var query = \"burger\";\r",
+											"\r",
+											"pm.test(\"'results' field is not empty\", function () {\r",
+											"    pm.expect(jsonData.results).to.be.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'offset' field is 0\", function () {\r",
+											"    pm.expect(jsonData.offset).to.eql(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'number' field is 10\", function () {\r",
+											"    pm.expect(jsonData.number).to.eql(10);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'totalResults' field is not 0\", function () {\r",
+											"    pm.expect(jsonData.totalResults).to.be.above(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response contains nutrition information\", function () {  \r",
+											"    jsonData.results.forEach(recipe => {\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"nutrition\");\r",
+											"        pm.expect(recipe.nutrition).to.haveOwnPropertyDescriptor(\"nutrients\");\r",
+											"        recipe.nutrition.nutrients.forEach(nutrient  => {\r",
+											"            pm.expect(nutrient).to.haveOwnPropertyDescriptor(\"name\");\r",
+											"            pm.expect(nutrient).to.haveOwnPropertyDescriptor(\"amount\");\r",
+											"            pm.expect(nutrient).to.haveOwnPropertyDescriptor(\"unit\");\r",
+											"            pm.expect(nutrient).to.haveOwnPropertyDescriptor(\"percentOfDailyNeeds\");\r",
+											"        })\r",
+											"   })\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The recipes contain complete information\", function () {  \r",
+											"    dataResults.forEach(recipe => {\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"vegetarian\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"vegan\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"glutenFree\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"dairyFree\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"veryHealthy\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"cheap\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"cheap\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"veryPopular\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"sustainable\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"weightWatcherSmartPoints\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"gaps\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"aggregateLikes\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"creditsText\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"sourceName\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"id\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"title\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"readyInMinutes\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"servings\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"sourceUrl\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"image\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"imageType\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"summary\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"cuisines\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"dishTypes\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"diets\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"analyzedInstructions\");\r",
+											"        pm.expect(recipe).to.haveOwnPropertyDescriptor(\"spoonacularSourceUrl\");\r",
+											"   })\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?addRecipeInformation=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "addRecipeInformation",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Empty Query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"'results' field is not empty\", function () {\r",
+											"    pm.expect(jsonData.results).to.be.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'offset' field is 0\", function () {\r",
+											"    pm.expect(jsonData.offset).to.eql(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'number' field is 10\", function () {\r",
+											"    pm.expect(jsonData.number).to.eql(10);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"More than 5000 results in response for empty query\", function (){\r",
+											"    pm.expect(pm.response.json().totalResults).to.be.above(5000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Offset is 10",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Number is 1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var body = JSON.parse(responseBody);\r",
+											"pm.expect(body.results.length).to.eql(1)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger&number=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										},
+										{
+											"key": "number",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Diet is vegetarian",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Type is drink",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Intolerances is egg",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Max Ready Time",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?tags",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "tags",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Exclude American Cuisine",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Min Calories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | Max Calories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Negative | Max Calories is -10",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Negative | Max Ready Time is 0",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Negative | Intolerances is egg & query is egg",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=burger",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "burger"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Negative | Unrecognised Query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"'results' field is not empty\", function () {\r",
+											"    pm.expect(jsonData.results).to.be.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'offset' field is 0\", function () {\r",
+											"    pm.expect(jsonData.offset).to.eql(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"'number' field is 10\", function () {\r",
+											"    pm.expect(jsonData.number).to.eql(10);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"More than 5000 results in response for empty query\", function (){\r",
+											"    pm.expect(pm.response.json().totalResults).to.be.above(5000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/recipes/complexSearch?query=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"recipes",
+										"complexSearch"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Classify Cuisine",
+					"item": [
+						{
+							"name": "Positive | title is 'chili'",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "chili",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.spoonacular.com/recipes/cuisine",
+									"protocol": "https",
+									"host": [
+										"api",
+										"spoonacular",
+										"com"
+									],
+									"path": [
+										"recipes",
+										"cuisine"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | title is 'pizza'",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Pork roast with green beans",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.spoonacular.com/recipes/cuisine",
+									"protocol": "https",
+									"host": [
+										"api",
+										"spoonacular",
+										"com"
+									],
+									"path": [
+										"recipes",
+										"cuisine"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Positive | title is 'burger'",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"'application/json' header is present in response\", () => {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is not empty\", function () {\r",
+											"    pm.expect(jsonData).to.be.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains the expected fields\", function () {\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"cuisine\");\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"cuisines\");\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"confidence\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The values of the fields have the expected type\", function () {\r",
+											"    pm.expect(typeof(jsonData.cuisine)).is.eql(\"string\");\r",
+											"    pm.expect(typeof(jsonData.cuisines)).is.eql(\"object\");\r",
+											"    pm.expect(typeof(jsonData.confidence)).is.eql(\"number\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Cuisine is American\", function () {\r",
+											"    pm.expect(jsonData.cuisine).to.be.eql(\"American\")\r",
+											"    pm.expect(jsonData.cuisines).contains(\"American\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "burger",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.spoonacular.com/recipes/cuisine",
+									"protocol": "https",
+									"host": [
+										"api",
+										"spoonacular",
+										"com"
+									],
+									"path": [
+										"recipes",
+										"cuisine"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Negative | random symbols in query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"'application/json' header is present in response\", function () {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is not empty\", function () {\r",
+											"    pm.expect(jsonData).to.be.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body contains the expected fields\", function () {\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"cuisine\");\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"cuisines\");\r",
+											"    pm.expect(jsonData).haveOwnPropertyDescriptor(\"confidence\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The values of the fields have the expected type\", function () {\r",
+											"    pm.expect(typeof(jsonData.cuisine)).is.eql(\"string\");\r",
+											"    pm.expect(typeof(jsonData.cuisines)).is.eql(\"object\");\r",
+											"    pm.expect(typeof(jsonData.confidence)).is.eql(\"number\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Confidence is 0\", function () {\r",
+											"    pm.expect(jsonData.confidence).to.be.eql(0.0)\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "56ruy546435234",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.spoonacular.com/recipes/cuisine",
+									"protocol": "https",
+									"host": [
+										"api",
+										"spoonacular",
+										"com"
+									],
+									"path": [
+										"recipes",
+										"cuisine"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "apiKey",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "a7a5eba8a0e54a3695833b72c699276c",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.spoonacular.com",
+			"type": "default"
+		}
+	]
+}
