@@ -1798,7 +1798,7 @@
 							"response": []
 						},
 						{
-							"name": "CC9 | Negative | random symbols in query",
+							"name": "CC9 | Negative | random symbols in title",
 							"event": [
 								{
 									"listen": "test",
